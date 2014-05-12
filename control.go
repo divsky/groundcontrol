@@ -31,6 +31,7 @@ import (
 	"encoding/json"
 	"errors"
 	"log"
+	//"fmt"
 	"net/http"
 	"os/exec"
 	"strings"
@@ -79,12 +80,13 @@ func (self *Control) Handler(w http.ResponseWriter, r *http.Request) {
 
 		log.Println("Running", cmd)
 
+
 		// Some commands just hang on Output(), leave it out for now
 		// lets go with "ok" for every successful command.
-		err = exec.Command("sh", "-c", cmd).Start()
-		out := "ok"
-
-		log.Println("Done")
+		//out, err := exec.Command().Output()
+		//out := "ok"
+		
+		out, err := exec.Command("sh", "-c", cmd).Output()
 
 		if err != nil {
 			// minor error?
@@ -93,6 +95,9 @@ func (self *Control) Handler(w http.ResponseWriter, r *http.Request) {
 
 			log.Println(err)
 		}
+
+		log.Printf("%s", out)
+		log.Println("Done")
 
 		actionResponse(w, string(out))
 	default:
