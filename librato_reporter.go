@@ -36,7 +36,7 @@ func (self *LibratoReporter) ReportHealth(h *Health) {
 
 	hmap := h.Map()
 	for k, v := range hmap {
-		bulk.Gauges = append(bulk.Gauges, map[string]interface{}{"name": k, "value": v, "source": "pi"})
+		bulk.Gauges = append(bulk.Gauges, map[string]interface{}{"name": k, "value": v, "source": self.Credentials.Name})
 	}
 
 	b, _ := json.Marshal(bulk)

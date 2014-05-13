@@ -7,6 +7,7 @@ type Reporter interface {
 type ReporterCredentials struct {
 	User string `json:"user"`
 	Key  string `json:"key"`
+	Name string `json:"name"`	
 }
 
 type GraphiteConfig struct {
